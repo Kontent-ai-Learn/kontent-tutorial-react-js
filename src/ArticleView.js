@@ -18,6 +18,7 @@ class ArticleView extends Component {
     console.log(slug);
 
     deliveryClient.item(slug)
+      .depthParameter(1)
       .getObservable()
       .subscribe((response) => {
         console.log(response.item);
