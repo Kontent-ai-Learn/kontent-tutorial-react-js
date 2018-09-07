@@ -15,9 +15,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Our blog</h1>
         </header>
-        <Route exact path="/" component={ArticleListing} />
-        <Route exact path="/post/" component={ArticleView} />
-        <Route path="/post/:slug" component={ArticleView} />
+        <Router>
+          <div>
+            <Route exact path="/" component={ArticleListing} />
+            <Route path="/post/:slug" component={ArticleView} />
+          </div>
+        </Router>
+
       </div>
     );
   }
