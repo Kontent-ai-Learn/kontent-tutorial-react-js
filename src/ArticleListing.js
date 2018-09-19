@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { DeliveryClient } from 'kentico-cloud-delivery';
 
-const deliveryClient = new DeliveryClient({ projectId: '975bf280-fd91-488c-994c-2f04416e5ee3' });
+const deliveryClient = new DeliveryClient({ projectId: '14372844-0a5d-434a-8423-605b8a631623' });
+// const deliveryClient = new DeliveryClient({ projectId: '975bf280-fd91-488c-994c-2f04416e5ee3' });
+// const deliveryClient = new DeliveryClient({ projectId: 'cc709c91-05b3-0090-ea55-aa3eddac1f84' });
 
 class ArticleListing extends Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class ArticleListing extends Component {
       });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchArticles();
   }
 
