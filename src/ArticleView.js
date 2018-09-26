@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { DeliveryClient } from 'kentico-cloud-delivery';
+import { DeliveryClient, Link } from 'kentico-cloud-delivery';
 
-const deliveryClient = new DeliveryClient({ projectId: '14372844-0a5d-434a-8423-605b8a631623' });
+// const deliveryClient = new DeliveryClient({ projectId: '14372844-0a5d-434a-8423-605b8a631623' });
 // const deliveryClient = new DeliveryClient({ projectId: '975bf280-fd91-488c-994c-2f04416e5ee3' });
-// const deliveryClient = new DeliveryClient({ projectId: 'cc709c91-05b3-0090-ea55-aa3eddac1f84' });
+// const deliveryClient = new DeliveryClient({ projectId: 'cc709c91-05b3-0090-ea55-aa3eddac1f84' }); //latest
+const deliveryClient = new DeliveryClient({ projectId: 'a0a9d198-e604-007a-50c9-fecbb46046d1' }); //react test
 
 
 class ArticleView extends Component {
@@ -21,47 +22,17 @@ class ArticleView extends Component {
     console.log(slug);
 
     deliveryClient.item(slug)
-      .depthParameter(1)
+      .depthParameter(0)
       .queryConfig({
         linkResolver: (link) => {
-          console.log(`Resolving link ${link}`);
+          console.log(`Resolving link ` + JSON.stringify(link));
           if (link.type === 'article') {
-            return `/post/${link.urlSlug}`
+            // return `/post/${link.codename}`
+            return (<Link to={`/post/${link.codename}`}>
+            {link.codename}
+          </Link>)
           }
-          return undefined;
-        },
-        richTextResolver: (item) => {
-          console.log(`Resolving modular item: ${item}`);
-          if (item.system.type === 'hosted_video') {
-            let video = item;
-            if (video.videoHost.value.find(item => item.codename === 'vimeo')) {
-              return `<iframe class="hosted-video__wrapper"
-                                    src="https://player.vimeo.com/video/${
-                                      video.videoId.value
-                                    }?title=0&byline=0&portrait=0"
-                                    width="640"
-                                    height="360"
-                                    frameborder="0"
-                                    webkitallowfullscreen
-                                    mozallowfullscreen
-                                    allowfullscreen
-                                    >
-                            </iframe>`;
-            } else if (
-              video.videoHost.value.find(item => item.codename === 'youtube')
-            ) {
-              return `<iframe class="hosted-video__wrapper"
-                                    width="560"
-                                    height="315"
-                                    src="https://www.youtube.com/embed/${
-                                      video.videoId.value
-                                    }"
-                                    frameborder="0"
-                                    allowfullscreen
-                                    >
-                            </iframe>`;
-            }
-          }
+          return "undefined";
         }
   })
       .getObservable()
@@ -78,7 +49,7 @@ render() {
   if (this.state.loaded) {
     const article = this.state.article;
     const title = article.title.value;
-    const bodyCopy = article.body_copy.value;
+    const bodyCopy = article.body_copy.getHtml();
 
     return (
       <div>
