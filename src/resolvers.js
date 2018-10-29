@@ -1,13 +1,11 @@
-export const linkResolver = (link) => {
-  // console.log(`Resolving link ` + JSON.stringify(link));
+export const resolveContentLink = (link) => {
   if (link.type === 'article') {
     return `/post/${link.codename}`;
   }
   return undefined;
 };
 
-export const richTextResolver = (item) => {
-  // console.log(`Resolving item in Rich text: ${JSON.stringify(item)}`);
+export const resolveItemInRichText = (item) => {
   if (item.system.type === 'hosted_video') {
     let video = item;
     if (video.video_host.value.find(item => item.codename === 'vimeo')) {
