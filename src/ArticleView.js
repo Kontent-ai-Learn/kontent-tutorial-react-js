@@ -17,9 +17,9 @@ class ArticleView extends Component {
     };
   }
 
-  fethcArticle(slug) {
+  fetchArticle(slug) {
     deliveryClient.item(slug)
-      .depthParameter(2)
+      .depthParameter(1)
       .queryConfig({
         linkResolver: resolveContentLink,
         richTextResolver: resolveItemInRichText,
@@ -50,14 +50,14 @@ class ArticleView extends Component {
   componentDidMount() {
     let slug = this.props.match.params.slug;
     console.log(slug);
-    this.fethcArticle(slug);
+    this.fetchArticle(slug);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     let oldSlug = this.props.match.params.slug;
     let newSlug = nextProps.match.params.slug;
     if (oldSlug !== newSlug) {
-      this.fethcArticle(newSlug);
+      this.fetchArticle(newSlug);
     }
   }
 

@@ -19,6 +19,7 @@ class ArticleListing extends Component {
   fetchArticles() {
     deliveryClient.items()
       .type('article')
+      .elementsParameter(['url_pattern', 'title'])
       .getObservable().subscribe(response => {
         console.log(response.items);
         this.setState({
