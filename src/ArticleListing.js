@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { deliveryClient } from './DeliveryClientConfig';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+let unsubscribe = new Subject();
 
 class ArticleListing extends Component {
   constructor(props) {
@@ -15,7 +19,9 @@ class ArticleListing extends Component {
     deliveryClient.items()
       .type('article')
       .elementsParameter(['url_pattern', 'title'])
-      .getObservable().subscribe(response => {
+      .getObservable()
+      .pipe(takeUntil(unsubscribe))
+      .subscribe(response => {
         console.log(response.items);
         this.setState({
           loaded: true,
@@ -26,6 +32,16 @@ class ArticleListing extends Component {
 
   componentDidMount() {
     this.fetchArticles();
+  }
+
+  unsubscribe() {
+    unsubscribe.next();
+    unsubscribe.complete();
+    unsubscribe = new Subject();
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
