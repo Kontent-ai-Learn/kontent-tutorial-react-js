@@ -37,7 +37,6 @@ class ArticleListing extends Component {
   unsubscribe() {
     unsubscribe.next();
     unsubscribe.complete();
-    unsubscribe = new Subject();
   }
 
   componentWillUnmount() {
