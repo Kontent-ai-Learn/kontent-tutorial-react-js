@@ -1,6 +1,7 @@
 export const resolveContentLink = (link) => {
   if (link.type === 'article') {
-    return `/post/${link.codename}`;
+    console.log(link);
+    return `/post/${link.urlSlug}`;
   }
   return undefined;
 };
@@ -13,7 +14,7 @@ export const resolveItemInRichText = (item) => {
                             src="https://player.vimeo.com/video/${
                               video.video_id.value
                             }?title=0&byline=0&portrait=0"
-                            width="640"
+                            width="100%"
                             height="360"
                             frameborder="0"
                             webkitallowfullscreen
@@ -25,8 +26,8 @@ export const resolveItemInRichText = (item) => {
       video.video_host.value.find(item => item.codename === 'youtube')
     ) {
       return `<iframe class="hosted-video__wrapper"
-                            width="560"
-                            height="315"
+                            width="100%"
+                            height="360"
                             src="https://www.youtube.com/embed/${
                               video.video_id.value
                             }"

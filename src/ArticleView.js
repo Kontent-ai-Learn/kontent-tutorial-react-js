@@ -13,7 +13,9 @@ class ArticleView extends Component {
   }
 
   fetchArticle(slug) {
-    deliveryClient.item(slug)
+    deliveryClient.items()
+      .type('article')
+      .equalsFilter('elements.url_pattern', slug)
       .depthParameter(1)
       .queryConfig({
         linkResolver: resolveContentLink,
@@ -21,10 +23,10 @@ class ArticleView extends Component {
       })
       .getObservable()
       .subscribe((response) => {
-        console.log(response.item);
+        console.log(response);
         this.setState({
           loaded: true,
-          article: response.item
+          article: response.items[0]
         });
       });
   }
@@ -66,7 +68,7 @@ class ArticleView extends Component {
         <div>
           <Link to="/">Home</Link>
           <h1>{title}</h1>
-          <div
+          <div className="article_body"
             dangerouslySetInnerHTML={{ __html: bodyCopy.getHtml() }}
             onClick={event => this.handleClick(event, bodyCopy)} />
         </div>

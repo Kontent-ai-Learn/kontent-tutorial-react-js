@@ -4,7 +4,7 @@ import { deliveryClient } from './DeliveryClientConfig';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-let unsubscribe = new Subject();
+let unsubscribeSubject = new Subject();
 
 class ArticleListing extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ArticleListing extends Component {
       .type('article')
       .elementsParameter(['url_pattern', 'title'])
       .getObservable()
-      .pipe(takeUntil(unsubscribe))
+      .pipe(takeUntil(unsubscribeSubject))
       .subscribe(response => {
         console.log(response.items);
         this.setState({
@@ -35,8 +35,8 @@ class ArticleListing extends Component {
   }
 
   unsubscribe() {
-    unsubscribe.next();
-    unsubscribe.complete();
+    unsubscribeSubject.next();
+    unsubscribeSubject.complete();
   }
 
   componentWillUnmount() {
@@ -50,7 +50,7 @@ class ArticleListing extends Component {
           {this.state.articles.map((article) => {
             return (
               <div key={article.url_pattern.value}>
-                <Link to={`/post/${article.system.codename}`}>
+                <Link to={`/post/${article.elements.url_pattern.value}`}>
                   {article.title.text}
                 </Link>
               </div>
