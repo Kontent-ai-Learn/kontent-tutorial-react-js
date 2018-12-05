@@ -9,7 +9,6 @@ let unsubscribeSubject = new Subject();
 class ArticleListing extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loaded: false
     };

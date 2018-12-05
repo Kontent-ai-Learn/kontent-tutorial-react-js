@@ -1,6 +1,5 @@
 export const resolveContentLink = (link) => {
   if (link.type === 'article') {
-    console.log(link);
     return `/post/${link.urlSlug}`;
   }
   return undefined;

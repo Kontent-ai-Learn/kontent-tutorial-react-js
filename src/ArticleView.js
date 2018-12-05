@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { deliveryClient } from './DeliveryClientConfig';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { resolveContentLink, resolveItemInRichText } from './resolvers';
+
+let unsubscribeSubject = new Subject();
 
 class ArticleView extends Component {
   constructor(props) {
@@ -22,8 +26,9 @@ class ArticleView extends Component {
         richTextResolver: resolveItemInRichText,
       })
       .getObservable()
+      .pipe(takeUntil(unsubscribeSubject))
       .subscribe((response) => {
-        console.log(response);
+        console.log(response.items[0]);
         this.setState({
           loaded: true,
           article: response.items[0]
@@ -46,8 +51,16 @@ class ArticleView extends Component {
 
   componentDidMount() {
     let slug = this.props.match.params.slug;
-    console.log(slug);
     this.fetchArticle(slug);
+  }
+
+  unsubscribe() {
+    unsubscribeSubject.next();
+    unsubscribeSubject.complete();
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
