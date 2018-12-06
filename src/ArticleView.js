@@ -54,21 +54,21 @@ class ArticleView extends Component {
     this.fetchArticle(slug);
   }
 
-  unsubscribe() {
-    unsubscribeSubject.next();
-    unsubscribeSubject.complete();
+  componentDidUpdate(oldprops) {
+    let oldSlug = oldprops.match.params.slug;
+    let newSlug = this.props.match.params.slug;
+    if (oldSlug !== newSlug) {
+      this.fetchArticle(newSlug);
+    }
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    let oldSlug = this.props.match.params.slug;
-    let newSlug = nextProps.match.params.slug;
-    if (oldSlug !== newSlug) {
-      this.fetchArticle(newSlug);
-    }
+  unsubscribe() {
+    unsubscribeSubject.next();
+    unsubscribeSubject.complete();
   }
 
   render = (props) => {
