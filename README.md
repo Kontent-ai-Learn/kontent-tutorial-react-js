@@ -4,13 +4,22 @@
 This is a simple React app that retrieves and displays content from Kentico Cloud. It serves as a source code reference for the [Building your first React app with Kentico Cloud](https://developer.kenticocloud.com/v1/docs/building-your-first-react-app) tutorial.
 
 * Read the tutorial here: [Part 1](https://developer.kenticocloud.com/v1/docs/building-your-first-react-app), [Part 2](https://developer.kenticocloud.com/v1/docs/react-app-part-2-resolving-links-and-items-in-rich-text)
+* Explore a [live demo](https://codesandbox.io/s/github/juraju-kentico/react-tutorial-js/tree/master/?module=%2Fsrc%2FApp.js)
 * Head over to our [Developer Hub](https://developer.kenticocloud.com/docs) for more resources.
 
 This project is using the [Kentico Cloud JavaScript SDK](https://github.com/Kentico/kentico-cloud-js/tree/master/packages/delivery) and was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+### Prerequisites
+
+* [Node and npm](https://nodejs.org/en/)
+
 ### Available Scripts
 
 In the project directory, you can run:
+
+#### `npm install` 
+
+Installs all the requiered dependencies.
 
 #### `npm start`
 
