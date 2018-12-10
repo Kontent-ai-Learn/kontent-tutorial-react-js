@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { deliveryClient } from './DeliveryClientConfig';
+import { deliveryClientInstance } from './deliveryClientConfig';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ class ArticleListing extends Component {
   }
 
   fetchArticles() {
-    deliveryClient.items()
+    deliveryClientInstance.items()
       .type('article')
       .elementsParameter(['url_pattern', 'title'])
       .getObservable()

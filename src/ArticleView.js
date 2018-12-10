@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { deliveryClient } from './DeliveryClientConfig';
+import { deliveryClientInstance } from './deliveryClientConfig';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { resolveContentLink, resolveItemInRichText } from './resolvers';
@@ -17,7 +17,7 @@ class ArticleView extends Component {
   }
 
   fetchArticle(slug) {
-    deliveryClient.items()
+    deliveryClientInstance.items()
       .type('article')
       .equalsFilter('elements.url_pattern', slug)
       .depthParameter(1)
