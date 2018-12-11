@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { deliveryClientInstance } from './deliveryClientConfig';
+import { client } from './config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ class ArticleListing extends Component {
   }
 
   fetchArticles() {
-    deliveryClientInstance.items()
+    client.items()
       .type('article')
       .elementsParameter(['url_pattern', 'title'])
       .getObservable()
@@ -33,13 +33,12 @@ class ArticleListing extends Component {
     this.fetchArticles();
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   unsubscribe() {
     unsubscribeSubject.next();
     unsubscribeSubject.complete();
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   render() {
