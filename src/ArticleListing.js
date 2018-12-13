@@ -44,18 +44,18 @@ class ArticleListing extends Component {
   render() {
     if (this.state.loaded) {
       return (
-        <div>
+        <ul>
           {this.state.articles.map((article) => {
             return (
-              <div key={article.url_pattern.value}>
+              <li key={article.url_pattern.value}>
                 <Link to={`/post/${article.elements.url_pattern.value}`}>
                   {article.title.text}
                 </Link>
-              </div>
+              </li>
             )
           })}
 
-        </div>
+        </ul>
       );
     } else {
       return (
