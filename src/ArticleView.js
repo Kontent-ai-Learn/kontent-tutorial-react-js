@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { client } from './config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { resolveContentLink, resolveItemInRichText } from './resolvers';
+import { resolveContentLink } from './linkResolver';
+import { resolveItemInRichText } from './itemResolver';
 
 let unsubscribeSubject = new Subject();
 

@@ -1,10 +1,3 @@
-export const resolveContentLink = (link) => {
-  if (link.type === 'article') {
-    return `/post/${link.urlSlug}`;
-  }
-  return undefined;
-};
-
 export const resolveItemInRichText = (item) => {
   if (item.system.type === 'hosted_video') {
     let video = item;
