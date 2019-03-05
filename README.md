@@ -2,6 +2,7 @@
 # Kentico Cloud React tutorial
 
 [![Live Demo](https://img.shields.io/badge/live-demo-brightgreen.svg)](https://codesandbox.io/s/github/kentico/react-tutorial-js/tree/master/?module=%2Fsrc%2FApp.js)
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
 
 This is a simple React app that retrieves and displays content from Kentico Cloud. It serves as a source code reference for the [Building your first React app with Kentico Cloud](https://developer.kenticocloud.com/v1/docs/building-your-first-react-app) tutorial.
 
