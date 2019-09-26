@@ -18,7 +18,7 @@ class ArticleListing extends Component {
     client.items()
       .type('article')
       .elementsParameter(['url_pattern', 'title'])
-      .getObservable()
+      .toObservable()
       .pipe(takeUntil(unsubscribeSubject))
       .subscribe(response => {
         console.log(response.items);
@@ -48,8 +48,8 @@ class ArticleListing extends Component {
           {this.state.articles.map((article) => {
             return (
               <li key={article.url_pattern.value}>
-                <Link to={`/post/${article.elements.url_pattern.value}`}>
-                  {article.title.text}
+                <Link to={`/post/${article.url_pattern.value}`}>
+                  {article.title.value}
                 </Link>
               </li>
             )

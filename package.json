@@ -1,14 +1,14 @@
 {
-  "name": "kentico-cloud-react-app-tutorial",
-  "version": "0.1.0",
+  "name": "kontent-tutorial-react-js",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "kentico-cloud-delivery": "^5.2.0",
+    "@kentico/kontent-delivery": "^7.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.1",
-    "rxjs": "^6.3.2"
+    "react-scripts": "^3.1.2",
+    "rxjs": "^6.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

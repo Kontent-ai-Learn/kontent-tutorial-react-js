@@ -23,10 +23,10 @@ class ArticleView extends Component {
       .equalsFilter('elements.url_pattern', slug)
       .depthParameter(1)
       .queryConfig({
-        linkResolver: resolveContentLink,
+        urlSlugResolver: resolveContentLink,
         richTextResolver: resolveItemInRichText,
       })
-      .getObservable()
+      .toObservable()
       .pipe(takeUntil(unsubscribeSubject))
       .subscribe((response) => {
         console.log(response.items[0]);
@@ -42,7 +42,7 @@ class ArticleView extends Component {
       event.preventDefault();
 
       const id = event.target.getAttribute('data-item-id');
-      const link = richTextElement.links.find(link => link.itemId === id);
+      const link = richTextElement.links.find(link => link.linkId === id);
       const newPath = resolveContentLink(link);
       if (newPath) {
         this.props.history.push(newPath);
@@ -83,7 +83,7 @@ class ArticleView extends Component {
           <Link to="/">Home</Link>
           <h1>{title}</h1>
           <div className="article_body"
-            dangerouslySetInnerHTML={{ __html: bodyCopy.getHtml() }}
+            dangerouslySetInnerHTML={{ __html: bodyCopy.resolveHtml() }}
             onClick={event => this.handleClick(event, bodyCopy)} />
         </div>
       );
