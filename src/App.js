@@ -1,8 +1,8 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import ArticleListing from './ArticleListing'
-import ArticleView from './ArticleView'
-import './App.css'
+import React from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import ArticleListing from "./ArticleListing";
+import ArticleView from "./ArticleView";
+import "./App.css";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </div>
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

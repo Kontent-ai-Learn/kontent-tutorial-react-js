@@ -1,7 +1,7 @@
-export const resolveItemInRichText = item => {
-  if (item.system.type === 'hosted_video') {
-    let video = item
-    if (video.video_host.value.find(item => item.codename === 'vimeo')) {
+export const resolveItemInRichText = (item) => {
+  if (item.system.type === "hosted_video") {
+    let video = item;
+    if (video.video_host.value.find((item) => item.codename === "vimeo")) {
       return `<iframe class="hosted-video__wrapper"
                 src="https://player.vimeo.com/video/${video.video_id.value}?title=0&byline=0&portrait=0"
                 width="100%"
@@ -11,10 +11,8 @@ export const resolveItemInRichText = item => {
                 mozallowfullscreen
                 allowfullscreen
                 >
-              </iframe>`
-    } else if (
-      video.video_host.value.find(item => item.codename === 'youtube')
-    ) {
+              </iframe>`;
+    } else if (video.video_host.value.find((item) => item.codename === "youtube")) {
       return `<iframe class="hosted-video__wrapper"
                 width="100%"
                 height="360"
@@ -22,8 +20,8 @@ export const resolveItemInRichText = item => {
                 frameborder="0"
                 allowfullscreen
                 >
-              </iframe>`
+              </iframe>`;
     }
   }
-  return undefined
-}
+  return undefined;
+};
