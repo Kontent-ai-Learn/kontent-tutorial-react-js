@@ -10,7 +10,7 @@ This is a simple React app that retrieves and displays content from Kentico Kont
 * Explore a [live demo](https://codesandbox.io/s/github/kentico/kontent-tutorial-react-js/tree/master/?module=%2Fsrc%2FApp.js)
 * Head over to our [Developer Hub](https://developer.kenticocloud.com/docs) for more resources.
 
-This project is using the [Kentico Kontent JavaScript Delivery SDK](https://github.com/Kentico/kontent-delivery-sdk-js)Upda and was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project is using the [Kentico Kontent JavaScript Delivery SDK](https://github.com/Kentico/kontent-delivery-sdk-js) and was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ### Prerequisites
 
