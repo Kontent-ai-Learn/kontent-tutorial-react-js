@@ -29,7 +29,7 @@ function ArticleView({match}) {
   useEffect(() => {
     const subscription = fetchArticle(match.params.slug);
     return () => subscription.unsubscribe();
-  }, []);
+  }, [match.params.slug]);
 
   if (isLoading) {
     return <div>Loading...</div>;
