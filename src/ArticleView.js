@@ -20,7 +20,6 @@ function ArticleView({match, history}) {
       })
       .toObservable()
       .subscribe((response) => {
-        console.log(response.items);
         setArticle(response.items[0]);
         setLoading(false);
       });
