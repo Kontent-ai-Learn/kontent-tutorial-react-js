@@ -13,7 +13,6 @@ function ArticleListing() {
       .elementsParameter(["url_pattern", "title"])
       .toObservable()
       .subscribe((response) => {
-        console.log(response.items);
         setLoading(false);
         setArticles(response.items);
       });
