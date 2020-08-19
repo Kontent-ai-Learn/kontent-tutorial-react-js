@@ -4,7 +4,7 @@ import {client} from "./config";
 import {resolveContentLink} from "./linkResolver";
 import {resolveItemInRichText} from "./itemResolver";
 
-function ArticleView({match}) {
+function ArticleView({match, history}) {
   const [isLoading, setLoading] = useState(true);
   const [article, setArticle] = useState({});
 
@@ -30,6 +30,17 @@ function ArticleView({match}) {
     const subscription = fetchArticle(match.params.slug);
     return () => subscription.unsubscribe();
   }, [match.params.slug]);
+  
+  const handleClick = (event, richTextElement) => {
+    if (event.target.tagName === 'A' && event.target.hasAttribute('data-item-id')) {
+      event.preventDefault();
+
+      const id = event.target.getAttribute('data-item-id');
+      const link = richTextElement.links.find(link => link.linkId === id);
+      const newPath = resolveContentLink(link).url;
+      if (newPath) history.push(newPath);
+    }
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -42,7 +53,7 @@ function ArticleView({match}) {
       <div
         className='article_body'
         dangerouslySetInnerHTML={{__html: article.body_copy.resolveHtml()}}
-        onClick={(event) => this.handleClick(event, article.body_copy)}
+        onClick={(event) => handleClick(event, article.body_copy)}
       />
     </div>
   );
