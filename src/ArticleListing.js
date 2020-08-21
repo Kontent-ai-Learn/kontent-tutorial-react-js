@@ -1,70 +1,43 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { client } from './config';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import React, {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
+import {client} from "./config";
 
-let unsubscribeSubject = new Subject();
+function ArticleListing() {
+  const [isLoading, setLoading] = useState(true);
+  const [articles, setArticles] = useState([]);
 
-class ArticleListing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false
-    };
-  }
-
-  fetchArticles() {
-    client.items()
-      .type('article')
-      .elementsParameter(['url_pattern', 'title'])
+  const fetchArticles = () => {
+    return client
+      .items()
+      .type("article")
+      .elementsParameter(["url_pattern", "title"])
       .toObservable()
-      .pipe(takeUntil(unsubscribeSubject))
-      .subscribe(response => {
-        console.log(response.items);
-        this.setState({
-          loaded: true,
-          articles: response.items
-        });
+      .subscribe((response) => {
+        setLoading(false);
+        setArticles(response.items);
       });
+  };
+
+  useEffect(() => {
+    const subscription = fetchArticles();
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  componentDidMount() {
-    this.fetchArticles();
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-  unsubscribe() {
-    unsubscribeSubject.next();
-    unsubscribeSubject.complete();
-  }
-
-  render() {
-    if (this.state.loaded) {
-      return (
-        <ul>
-          {this.state.articles.map((article) => {
-            return (
-              <li key={article.url_pattern.value}>
-                <Link to={`/post/${article.url_pattern.value}`}>
-                  {article.title.value}
-                </Link>
-              </li>
-            )
-          })}
-
-        </ul>
-      );
-    } else {
-      return (
-        <div>
-          Loading...
-          </div>
-      )
-    }
-  }
+  return (
+    <ul>
+      {articles.map((article) => {
+        return (
+          <li key={article.url_pattern.value}>
+            <Link to={`/post/${article.url_pattern.value}`}>{article.title.value}</Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 export default ArticleListing;
