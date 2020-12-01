@@ -1,32 +1,36 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {client} from "./config";
+import {deliveryClient } from "./config";
 
 function ArticleListing() {
-  const [isLoading, setLoading] = useState(true);
+  // Uses the React state hook
   const [articles, setArticles] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  const fetchArticles = () => {
-    return client
+  // Gets URL slugs and titles of all articles in the project
+  const getArticles = () => {
+    return deliveryClient 
       .items()
       .type("article")
       .elementsParameter(["url_pattern", "title"])
       .toObservable()
       .subscribe((response) => {
-        setLoading(false);
         setArticles(response.items);
+        setLoading(false);
       });
   };
 
   useEffect(() => {
-    const subscription = fetchArticles();
+    const subscription = getArticles();
     return () => subscription.unsubscribe();
   }, []);
 
+  // Shows loading until the app gets article from Kontent
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  // Displays a list of the retrieved articles with links to their detail
   return (
     <ul>
       {articles.map((article) => {

@@ -1,6 +1,6 @@
 import {DeliveryClient} from "@kentico/kontent-delivery";
 
-export const client = new DeliveryClient({
-  projectId: "a0a9d198-e604-007a-50c9-fecbb46046d1",
-  enableAdvancedLogging: false
+export const deliveryClient = new DeliveryClient({
+  // Tip: Use your own sample project ID instead of the Sample Project ID
+  projectId: "975bf280-fd91-488c-994c-2f04416e5ee3",
 });
