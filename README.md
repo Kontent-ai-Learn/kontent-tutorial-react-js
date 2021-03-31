@@ -3,6 +3,7 @@
 
 [![Live Demo](https://img.shields.io/badge/live-demo-brightgreen.svg)](https://codesandbox.io/s/github/kentico/kontent-tutorial-react-js/tree/master/?module=%2Fsrc%2FApp.js)
 [![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
+[![Discord](https://img.shields.io/discord/821885171984891914?label=Discord&logo=Discord&logoColor=white)](https://discord.gg/SKCxwPtevJ)
 
 This is a simple React app that retrieves and displays content from Kentico Kontent. It serves as a source code reference for the [Building your first React app with Kentico Kontent](https://docs.kontent.ai/tutorials/develop-apps/get-started/building-your-first-application?tech=react) tutorial.
 
