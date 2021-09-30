@@ -3,13 +3,16 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 // You'll add these two Article components in a moment
 import ArticleListing from "./ArticleListing";
 import ArticleView from "./ArticleView";
+import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
+      <header className='App-header' style={{borderRadius: 10}}>
+
         <h1 className='App-title'>Our blog</h1>
+        <img src={logo} alt="logo" className="logo" />
       </header>
       {/* Specifies components to handle specific routes */}
       <Router>
