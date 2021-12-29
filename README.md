@@ -1,5 +1,8 @@
-
 # Kontent React tutorial
+
+[![No Maintenance Intended](https://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+## :warning: Deprecation Notice
+> This sample app on how to use Kontent with React has been archived. You can still use it as an inspiration for your own apps but it's not maintained anymore. We recommend you use the [Kontent's JavaScript SDKs](https://docs.kontent.ai/tutorials/develop-apps/overview?tech=javascript) when building your own apps.
 
 [![Live Demo](https://img.shields.io/badge/live-demo-brightgreen.svg)](https://codesandbox.io/s/github/kentico/kontent-tutorial-react-js/tree/master/?module=%2Fsrc%2FApp.js)
 [![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
